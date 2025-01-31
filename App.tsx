@@ -1,118 +1,78 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// import React, { useEffect } from 'react';
+// import { Alert, StyleSheet } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import Splash from './src/Screen/Splash';
+// import Login from './src/Screen/Login';
+// import Verification from './src/Screen/Verification';
+// import Dashboard from './src/Screen/Dashboard';
+// import Visit from './src/Screen/Visit';
+// import Visitmanage from './src/Screen/Visitmanage';
+// import Schedule from './src/Screen/Schedule';
+// import Shared from './src/Screen/Shared';
+// import RMvisit from './src/Screen/RMvisit';
+// import DMvisit from './src/Screen/DMvisit';
+// import Mymeeting from './src/Screen/Mymeeting';
+// import Bottam from './src/Screen/Bottam';
+// import Upcoming from './src/Screen/Upcoming';
+// import Reschedule from './src/Screen/Reschedule';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+// const Stack = createNativeStackNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+// const App = () => {
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator>
+//         <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
+//         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+//         <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
+//         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+//         {/* Replace this screen with the Tab Navigator */}
+//         <Stack.Screen name="Bottam" component={Bottam} options={{ headerShown: false }} />
+//         <Stack.Screen name="Visit" component={Visit} options={{ headerShown: false }} />
+//         <Stack.Screen name="Visitmanage" component={Visitmanage} options={{ headerShown: false }} />
+//         <Stack.Screen name="Schedule" component={Schedule} options={{ headerShown: false }} />
+//         <Stack.Screen name="Shared" component={Shared} options={{ headerShown: false }} />
+//         <Stack.Screen name="RMvisit" component={RMvisit} options={{ headerShown: false }} />
+//         <Stack.Screen name="DMvisit" component={DMvisit} options={{ headerShown: false }} />
+//         <Stack.Screen name="Mymeeting" component={Mymeeting} options={{ headerShown: false }} />
+//         <Stack.Screen name="Upcoming" component={Upcoming} options={{ headerShown: false }} />
+//         <Stack.Screen name="Reschedule" component={Reschedule} options={{ headerShown: false }} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+// export default App;
+
+// const styles = StyleSheet.create({});
+
+
+
+
+
+import React, { useEffect } from 'react';
+import { Alert, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Email from './src/Practice/Email';
+import Dashboard from './src/Practice/Dashboard';
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Email" component={Email} options={{ headerShown: false }} />
+        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;
+
+const styles = StyleSheet.create({});
