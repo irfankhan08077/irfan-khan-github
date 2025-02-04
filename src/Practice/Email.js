@@ -1,41 +1,54 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
 
-const Email = ({ navigation }) => {
+const Email = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [number, setNumber] = useState('');
+  const navigation = useNavigation();
 
-  // Function to validate input fields
   const validateInputs = () => {
     if (!name.trim() || !email.trim() || !password.trim() || !number.trim()) {
-      navigation.navigate('Dashboard');
       return false;
     }
     return true;
   };
 
-  // Function to add data to Firestore
+
+
+  
   const createUser = async () => {
-    if (!validateInputs()) return; // Stop execution if inputs are empty
+    if (!validateInputs()) {
+      navigation.navigate('Dashboard'); 
+      return;
+    }
 
     try {
-      await firestore().collection('users').add({
+      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+      const userId = userCredential.user.uid;
+
+      console.log('User account created & signed in!', userId);
+
+      await firestore().collection('users').doc(userId).set({
         name,
         email,
-        password,
         number,
-        createdAt: firestore.FieldValue.serverTimestamp(), // Timestamp for sorting
+        createdAt: firestore.FieldValue.serverTimestamp(),
       });
 
-      //console.log('User data added successfully!');
-      
-      // Navigate to Dashboard screen after data is added
       navigation.navigate('Dashboard');
     } catch (error) {
-      console.error('Error adding user:', error);
+      console.error('Error:', error);
+
+      if (error.code === 'auth/email-already-in-use' || error.code === 'auth/invalid-email') {
+        navigation.navigate('Dashboard'); 
+      } else {
+        navigation.navigate('Dashboard');
+      }
     }
   };
 
@@ -108,3 +121,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+

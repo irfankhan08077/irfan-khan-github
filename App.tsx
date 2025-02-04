@@ -56,8 +56,7 @@ import React, { useEffect } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Email from './src/Practice/Email';
-import Dashboard from './src/Practice/Dashboard';
+import Razorpay from './src/Practice/Razorpay';
 
 const Stack = createNativeStackNavigator();
 
@@ -66,10 +65,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Email" component={Email} options={{ headerShown: false }} />
-        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+        <Stack.Screen name="Razorpay" component={Razorpay} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
 };
 
